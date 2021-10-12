@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<title>Signup form</title>
+   <meta charset="utf-8">
+   <title>Signup form</title>
    <style>
       body{
          background-image: url('nbv.jpg');
@@ -16,7 +16,7 @@
    </style>
 </head>
 <body>
-	<form action="phpdb.php" method="POST">
+   <form action="phpdb.php" method="POST">
  <h1>Sign Up</h1>
     <p>Please fill in this form to create an account.</p>
 
@@ -33,10 +33,11 @@
     <input type="text" placeholder="Enter Username" name="unme" required="">
      <br><br>
     <label for="password"><b>Password</b></label>
-     <input type="password" placeholder="Enter Password" name="password">
+     <input type="password" placeholder="Enter Password" name="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{10,}" title="Password must contain at least one number and one uppercase and lowercase letter, special character and at least 10 or more characters"required>
      <br><br>
       <button type="reset" value="reset">Reset</button>
       <button type="submit">Submit</button>
+      <button><a href="log.php">BACK</a></button>
 </form>
 
 </body>

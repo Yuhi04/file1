@@ -1,3 +1,24 @@
+<?php  
+session_start();
+
+if(isset($_POST) & !empty($_POST)){
+  if(isset($_POST['csrf_token'])){
+    if($_POST['csrf_token'] == $_SESSION['csrf_token']){
+      //echo "CSRF Validation Success";
+    }
+  }
+}
+$token = md5(uniqid(rand(), true));
+$_SESSION['csrf_token'] = $token;
+$_SESSION['csrf_token_time'] = time();
+if (!isset($_SESSION['pass'],$_SESSION['name']))
+{
+	header("location:log.php");
+}
+$uname=$_SESSION['name'];
+$password=$_SESSION['pass'];
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +35,7 @@ body {
 </head>
 <body>
 <h1>WELCOME AT OUR SERVICE!!!!!!!!!!</h1>
+<button><a href="logout.php">LOGOUT</a></button>
 <div>
 	<img src="hotel.jpg" height="200" width="400">
 	<img src="bag.jpg" height="200" width="400">

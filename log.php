@@ -34,6 +34,9 @@ div{
     </label>
 </form>
 <br><br>
-<div>Create new account here<button><a href="sgn.php">SIGNUP</a></button></div>
+<div>
+    Create new account here<button><a href="sgn.php">SIGNUP</a></button><br><br>
+<button><a href="home.php">BACK</a></button>
+</div>
 </body>
 </html>
