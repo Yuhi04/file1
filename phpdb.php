@@ -1,28 +1,38 @@
- <?php
- include "database.php";
+<?php
+session_start();
+include "database.php";
 $fname=$_POST['nme'];
-echo "<br>";
 $lname=$_POST['name'];
-echo "<br>";
 $email=$_POST['email'];
-echo "<br>";
-$uname=$_POST['unme'];
-echo "<br>";
-  $password = sha1($_POST['password']);
-$sql="insert into form (firstname,lastname,email,username,password)values(?,?,?,?,?)";
-$st=mysqli_stmt_init($conn);
-if(mysqli_stmt_prepare($st,$sql))
-{
-  echo "Record created successfully";
-mysqli_stmt_bind_param($st,"sssss",$fname,$lname,$email,$uname,$password);
-mysqli_stmt_execute($st);
-}
+$user=$_POST['uname'];
+$pass=$_POST['password'];
 
+$_SESSION['email']=$email;
+    $_SESSION['code']=$code;
+$code= mt_rand(100000, 999999);
+$status="not verified";
+$sql="INSERT INTO form (firstname, lastname, email, username, password, code, status) values(?,?,?,?,?,?,?)";
+$st=mysqli_stmt_init($conn);
+ $to=$email;
+    $from="From: mutambagz1@gmail.com";
+    $subject="Verification Code for the web";
+    $message =$code;
+ 
+    $mailing = mail($to,$subject,$message,$from);
+if(mysqli_stmt_prepare($st,$sql)){
+$salted="qsdfghjhgh".$pass;
+$pass=hash('sha1', $salted);
+header('location: code.php');
+mysqli_stmt_bind_param($st,"sssssss",$fname,$lname,$email,$user,$pass,$code,$status);
+    mysqli_stmt_execute($st);
+}
 else{
 
-  echo "error: " .$sql . "<br>" . $conn->error;
+  //echo "error:".$sql."<br>".$conn->error;
+  echo "error!";
 }
 
-$conn->close();
+
+
+
 ?>
- 

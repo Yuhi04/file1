@@ -19,7 +19,7 @@ div{
 </head>
 <body>
 
-<form action="logph.php" method="post">
+<form>
     <label for="username"><b>Username</b></label>
     <input type="text" placeholder="Enter Username" name="name" value="<?php if(isset($_COOKIE["name"])) { echo $_COOKIE["name"]; } ?>">
     <br> <br>
@@ -38,6 +38,8 @@ div{
   Click here if you <a href="forget.php">Forget password</a><br><br>
     Create new account here<button><a href="sgn.php">SIGNUP</a></button><br><br>
 <button><a href="home.php">BACK</a></button>
+<button><a href="code.php">Verify now</a></button>
+
 </div>
 </body>
 </html>
